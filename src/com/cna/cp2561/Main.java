@@ -3,9 +3,7 @@ package com.cna.cp2561;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("This is a test commit.");
-
-//        third commit testing
+        WordBank.loadWords(1);
+        System.out.println(WordBank.getRandomWord());
     }
 }
