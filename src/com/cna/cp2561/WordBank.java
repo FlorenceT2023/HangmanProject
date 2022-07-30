@@ -1,6 +1,7 @@
 package com.cna.cp2561;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -54,8 +55,15 @@ public class WordBank {
      */
     public static String getRandomWord()
     {
+        StringBuilder hiddenWord = new StringBuilder();
         Random random = new Random();
         int number = random.nextInt(words.size());
-        return words.get(number);
+
+        // loop through each char of a word
+        String[] word = words.get(number).split("");
+        for (String character : word){
+            hiddenWord.append(character.replaceAll("\\w+", "_"));
+        }
+        return hiddenWord.toString();
     }
 }
