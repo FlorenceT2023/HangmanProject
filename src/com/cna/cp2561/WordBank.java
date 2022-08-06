@@ -55,12 +55,24 @@ public class WordBank {
      */
     public static String getRandomWord()
     {
-        StringBuilder hiddenWord = new StringBuilder();
+        String randomWord;
         Random random = new Random();
         int number = random.nextInt(words.size());
 
-        // loop through each char of a word
-        String[] word = words.get(number).split("");
+        randomWord = words.get(number);
+        return randomWord;
+    }
+
+    /**
+     * Receives a random word, and it replaces each letter with an underscore
+     * @param randomWord - takes a string value of a word.
+     * @return - returns a string of underscores which a used to replace letters of
+     *          the string
+     */
+    public static String hideAndReturnWord(String randomWord)
+    {
+        StringBuilder hiddenWord = new StringBuilder();
+        String[] word = randomWord.split("");
         for (String character : word){
             hiddenWord.append(character.replaceAll("\\w+", "_"));
         }
