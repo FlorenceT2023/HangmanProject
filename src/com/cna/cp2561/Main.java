@@ -1,13 +1,30 @@
 package com.cna.cp2561;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        // reads title txt file and displays it
+        try(Scanner input = new Scanner(Paths.get("hangmanTitle.txt"))) {
+
+            while(input.hasNextLine()) {
+                System.out.println(input.nextLine());
+            }
+        } catch (FileNotFoundException | SecurityException | FormatterClosedException ex) {
+            ex.printStackTrace();
+            System.exit(1);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+
+
         Scanner scanner = new Scanner(System.in);
 
         boolean play = true;
