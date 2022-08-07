@@ -1,93 +1,110 @@
 package com.cna.cp2561;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
-
     public static void main(String[] args) {
-
-
         Scanner scanner = new Scanner(System.in);
 
-        boolean weArePlaying = true;
-        while (weArePlaying)
+        boolean play = true;
+        while (play)
         {
             WordBank.loadWords(1);
             String randomWord = WordBank.getRandomWord();
             System.out.printf("The random word is \"%s\"%n", randomWord);
+            String[] randomWordArray = randomWord.split("");
+            ArrayList<String> mainRandomWordArray = new ArrayList<>(Arrays.asList(randomWordArray));
+            int amountOfGuesses = Display.arrDisplay.length;
 
-            char randomWordToGuess[] = randomWord.toCharArray();
-            int amountOfGuesses = randomWordToGuess.length;
-            char playerGuess[] = new char[amountOfGuesses];
-
-            Arrays.fill(playerGuess, '_');
+            ArrayList<String> hashedArray = generateHashedArray(mainRandomWordArray);
+            System.out.println();
 
             boolean wordIsGuessed = false;
             int tries = 0;
 
-            while (!wordIsGuessed && tries != amountOfGuesses +3)
+            while (!wordIsGuessed & tries != amountOfGuesses)
             {
                 System.out.println("Current Guesses: ");
-                print(playerGuess);
-                System.out.printf("You have %d amount of tries left.\n", (amountOfGuesses +3)-tries);
-                System.out.println("Enter a single character: ");
-                char input = scanner.nextLine().charAt(0);
-                tries++;
+                printArrayContent(hashedArray);
+                System.out.printf("You have %d amount of tries left.\n", (amountOfGuesses)-tries);
+                System.out.println("Enter a single letter: ");
+                String input = scanner.next();
 
-                if (input == '-'){
+
+                if (input.equals("-"))
+                {
+                    play = false;
                     wordIsGuessed = true;
-                    weArePlaying = false;
+                    System.out.println("Game Over!");
+                }
+
+                else if (!mainRandomWordArray.contains(input)){
+
+                    tries++;
+
                 }
                 else {
-                    for (int i = 0; i < randomWordToGuess.length; i++)
+                    for(int i = 0; i < mainRandomWordArray.size(); i++)
                     {
-                        if(randomWordToGuess[i] == input)
+                        if(mainRandomWordArray.get(i).equals(input))
                         {
-                            playerGuess[i] = input;
+                            hashedArray.set(i, input);
                         }
+
                     }
-                    if(isTheWordGuessed(playerGuess))
+                    if(mainRandomWordArray.equals(hashedArray))
                     {
                         wordIsGuessed = true;
-                        System.out.println("Congratulations");
+                        System.out.println("Congratulations!");
+                        System.out.print("You spelled ");
+                        printArrayContent(hashedArray);
                     }
                 }
-            }
-            if(!wordIsGuessed)
+                if (amountOfGuesses == tries)
+                {
+                    wordIsGuessed = true;
+                }
+                else {
+                    System.out.println(Display.arrDisplay[tries]);
+                }
+
+
+            }// END of inner while loop
+            if(amountOfGuesses == tries)
             {
                 System.out.println("You ran out of guesses.");
             }
             System.out.println("Would like to play again? (yes/no)");
+            scanner.nextLine();
             String choice = scanner.nextLine();
             if(choice.equals("no")){
-                weArePlaying = false;
+                play = false;
             } else if (choice.equals("yes")) {
-                weArePlaying = true;
+                play = true;
             }
 
-        }
+        }// END of outer while loop
         System.out.println("Game Over!");
-
     }
 
-    public static void print(char array[]){
-        for(int i=0; i<array.length; i++){ // Assign empty dashes at start "_ _ _ _ _ _ _ _"
-            System.out.print(array[i] + " ");
+    public static ArrayList<String> generateHashedArray(ArrayList<String> mainArray)
+    {
+        ArrayList<String> hashedWordArray = new ArrayList<>();
+        for (String s: mainArray){
+            hashedWordArray.add("_");
+        }
+        return hashedWordArray;
+    }
+
+    public static void printArrayContent(ArrayList<String> arr)
+    {
+        for (String s: arr){
+            System.out.print(s);
         }
         System.out.println();
-    }
-
-    public static boolean isTheWordGuessed(char[] array){
-        boolean condition = true;
-        for(int i=0; i<array.length; i++){
-            if(array[i] == '_'){
-                condition = false;
-            }
-        }
-        return condition;
     }
 }
