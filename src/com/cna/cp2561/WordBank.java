@@ -1,14 +1,12 @@
 package com.cna.cp2561;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 public class WordBank {
     static List<String> words = new LinkedList<>();
@@ -66,7 +64,7 @@ public class WordBank {
     /**
      * Receives a random word, and it replaces each letter with an underscore
      * @param randomWord - takes a string value of a word.
-     * @return - returns a string of underscores which a used to replace letters of
+     * @return - returns a string of underscores which is used to replace letters of
      *          the string
      */
     public static String hideAndReturnWord(String randomWord)
