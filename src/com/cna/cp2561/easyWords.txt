@@ -2,3 +2,10 @@ nonso
 mogo
 king
 leg
+arm
+eat
+prayer
+elephant
+blink
+doll
+spider
