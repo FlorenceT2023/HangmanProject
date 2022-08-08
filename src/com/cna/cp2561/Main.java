@@ -1,29 +1,11 @@
 package com.cna.cp2561;
 
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        // reads title txt file and displays it
-        try(Scanner title = new Scanner(Paths.get("hangmanTitle.txt"))) {
-
-            while(title.hasNextLine()) {
-                System.out.println(title.nextLine());
-            }
-        } catch (FileNotFoundException | SecurityException | FormatterClosedException ex) {
-            ex.printStackTrace();
-            System.exit(1);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.println();
+        Title.displayTitle();
 
         // Main menu displays options and starts game on difficulty user chooses
         Scanner sc = new Scanner(System.in);
@@ -86,7 +68,6 @@ public class Main {
     // isPlay contains the gameplay mechanics of Hangman
     private static boolean isPlay(boolean play, Scanner scanner) {
         String randomWord = WordBank.getRandomWord();
-        System.out.printf("The random word is \"%s\"%n", randomWord);
         String[] randomWordArray = randomWord.split("");
         ArrayList<String> mainRandomWordArray = new ArrayList<>(Arrays.asList(randomWordArray));
         int amountOfGuesses = Display.arrDisplay.length;

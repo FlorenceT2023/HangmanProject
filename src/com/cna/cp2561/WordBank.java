@@ -23,15 +23,12 @@ public class WordBank {
         switch (difficulty)
         {
             case 1:
-                System.out.println("Reading from easyWords.txt");
                 fileToLoad = "src/com/cna/cp2561/easyWords.txt";
                 break;
             case 2:
-                System.out.println("Reading from mediumWords.txt");
                 fileToLoad = "src/com/cna/cp2561/mediumWords.txt";
                 break;
             case 3:
-                System.out.println("Reading from hardWords.txt");
                 fileToLoad = "src/com/cna/cp2561/hardWords.txt";
                 break;
         }
