@@ -22,6 +22,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         System.out.println();
 
         // Main menu displays options and starts game on difficulty user chooses
