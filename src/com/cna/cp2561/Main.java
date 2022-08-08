@@ -30,7 +30,7 @@ public class Main {
 
         int menuChoice;
         while(true){
-            System.out.println("******* Hangman Main Menu *******\n");
+            System.out.println("\n******* Hangman Main Menu *******\n");
             System.out.println("1. Easy");
             System.out.println("2. Medium");
             System.out.println("3. Hard");
