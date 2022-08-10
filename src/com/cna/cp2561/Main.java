@@ -5,7 +5,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        // displays Hangman title ASCII art
         Title.displayTitle();
+
+        //plays background music for game
+        String backgroundMusic = "retro_arcade_music.wav";
+        Music musicObject = new Music();
+        musicObject.playMusic(backgroundMusic);
 
         // Main menu displays options and starts game on difficulty user chooses
         Scanner sc = new Scanner(System.in);
@@ -86,7 +92,6 @@ public class Main {
             System.out.println("Enter a single letter: ");
             String input = scanner.next();
 
-
             if (input.equals("-"))
             {
                 play = false;
@@ -110,6 +115,11 @@ public class Main {
                 }
                 if(mainRandomWordArray.equals(hashedArray))
                 {
+                    // plays sound when user wins the game
+                    String filepath = "outfit_swap_acnl.wav";
+                    SoundEffects loseMusic = new SoundEffects();
+                    loseMusic.playMusic(filepath);
+
                     wordIsGuessed = true;
                     System.out.println("Congratulations!");
                     System.out.print("You spelled ");
@@ -127,7 +137,14 @@ public class Main {
         }// END of inner while loop
         if(amountOfGuesses == tries)
         {
-            System.out.println("You ran out of guesses.");
+            // plays sound when user runs out of guesses
+            String filepath = "sad_trombone.wav";
+            SoundEffects loseMusic = new SoundEffects();
+            loseMusic.playMusic(filepath);
+
+            System.out.printf("You ran out of guesses. The mystery word is \"%s\"\n", randomWord);
+
+
         }
         System.out.println("Would like to play again? (yes/no)");
         scanner.nextLine();
