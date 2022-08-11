@@ -1,15 +1,19 @@
-  _    _
- | |  | |                                        
- | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
- |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
- | |  | | (_| | | | | (_| | | | | | | (_| | | | |
- |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                      __/ |                      
-                     |___/
+*********************************************************
+*     _    _                                            *
+*    | |  | |                                           *
+*    | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __     *
+*    |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \    *
+*    | |  | | (_| | | | | (_| | | | | | | (_| | | | |   *
+*    |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|   *
+*                         __/ |                         *
+*                        |___/                          *
+*                                                       *
+*********************************************************
 
-***Instructions:***
-Choose the level of difficulty for the Hangman game.
-A mystery word will appear along with the gallows.
+Instructions:
+
+Choose the level of difficulty.
+You have 8 tries to guess all the letters of the mystery word.
 For each incorrect guess, a body part will appear at the gallows.
 When all six body parts appear, you lose the game.
-Guess all the letters correctly and you win the game!
+Guess all the letters correctly and you win!

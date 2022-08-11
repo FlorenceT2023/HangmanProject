@@ -15,60 +15,69 @@ public class Main {
 
         // Main menu displays options and starts game on difficulty user chooses
         Scanner sc = new Scanner(System.in);
-
+        boolean continueLoop = true;
         int menuChoice;
-        while(true){
-            System.out.println("\n******* Hangman Main Menu *******\n");
-            System.out.println("1. Easy");
-            System.out.println("2. Medium");
-            System.out.println("3. Hard");
-            System.out.println("4. Exit");
-            System.out.println();
-            System.out.println("Please enter menu choice: ");
-            menuChoice = sc.nextInt();
+        do {
+            try{
+                System.out.println("\n******* Hangman Main Menu *******\n");
+                System.out.println("1. Easy");
+                System.out.println("2. Medium");
+                System.out.println("3. Hard");
+                System.out.println("4. Exit");
+                System.out.println();
+                System.out.println("Please enter menu choice: ");
 
-            boolean play = true;
-            Scanner scanner = new Scanner(System.in);
 
-            switch(menuChoice) {
-                case 1:
-                    // easy mode
-                    while (play)
-                    {
-                        WordBank.loadWords(1);
-                        play = isPlay(true, scanner);
+                menuChoice = sc.nextInt();
 
-                    }// END of outer while loop
-                    System.out.println("Game Over!");
-                    break;
-                case 2:
-                    // Medium mode
-                    while (play)
-                    {
-                        WordBank.loadWords(2);
-                        play = isPlay(true, scanner);
+                boolean play = true;
+                Scanner scanner = new Scanner(System.in);
 
-                    }// END of outer while loop
-                    System.out.println("Game Over!");
-                    break;
-                case 3:
-                    // Hard mode
-                    while (play)
-                    {
-                        WordBank.loadWords(3);
-                        play = isPlay(true, scanner);
+                switch (menuChoice) {
+                    case 1:
+                        // easy mode
+                        while (play) {
+                            WordBank.loadWords(1);
+                            play = isPlay(true, scanner);
 
-                    }// END of outer while loop
-                    System.out.println("Game Over!");
-                    break;
-                case 4:
-                    System.out.println("Exiting game...thanks for playing!");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid input, try again");
+                        }// END of outer while loop
+                        System.out.println("Game Over!");
+                        break;
+                    case 2:
+                        // Medium mode
+                        while (play) {
+                            WordBank.loadWords(2);
+                            play = isPlay(true, scanner);
+
+                        }// END of outer while loop
+                        System.out.println("Game Over!");
+                        break;
+                    case 3:
+                        // Hard mode
+                        while (play) {
+                            WordBank.loadWords(3);
+                            play = isPlay(true, scanner);
+
+                        }// END of outer while loop
+                        System.out.println("Game Over!");
+                        break;
+                    case 4:
+                        System.out.println("Exiting game...thanks for playing!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Invalid input, try again");
+                }
+
+            } catch (InputMismatchException ie) {
+                System.out.println("Only numbers 1-4 are allowed, try again.");
+                sc.nextLine();
+
+            } catch (Exception e) {
+                System.out.println("Processing error, try again.");
+                System.exit(1);
             }
-        }
+        } while (true);
     }
 
     // isPlay contains the gameplay mechanics of Hangman
@@ -88,7 +97,7 @@ public class Main {
         {
             System.out.println("Current Guesses: ");
             printArrayContent(hashedArray);
-            System.out.printf("You have %d amount of tries left.\n", (amountOfGuesses)-tries);
+            System.out.printf("\nYou have %d amount of tries left.\n", (amountOfGuesses)-tries);
             System.out.println("Enter a single letter: ");
             String input = scanner.next();
 
@@ -121,7 +130,7 @@ public class Main {
                     loseMusic.playMusic(filepath);
 
                     wordIsGuessed = true;
-                    System.out.println("Congratulations!");
+                    System.out.println("\nCongratulations!");
                     System.out.print("You spelled ");
                     printArrayContent(hashedArray);
                 }
@@ -142,7 +151,7 @@ public class Main {
             SoundEffects loseMusic = new SoundEffects();
             loseMusic.playMusic(filepath);
 
-            System.out.printf("You ran out of guesses. The mystery word is \"%s\"\n", randomWord);
+            System.out.printf("\nYou ran out of guesses. The mystery word is \"%s\"\n", randomWord);
 
 
         }
