@@ -17,8 +17,9 @@ public class WordBank {
      * ...If difficulty is 3, load hardWords.txt.
      * Loads all words into the 'words' List based on 'difficulty' parameter
      */
-    public static void loadWords(int difficulty)
-    {
+
+    public static void loadWords(int difficulty) {
+
         String fileToLoad = "";
         switch (difficulty)
         {
@@ -32,12 +33,14 @@ public class WordBank {
                 fileToLoad = "src/com/cna/cp2561/hardWords.txt";
                 break;
         }
-        try(Scanner input = new Scanner(Paths.get(fileToLoad))){
+
+        try(Scanner input = new Scanner(Paths.get(fileToLoad))) {
             while (input.hasNextLine())
             {
                 words.add(input.nextLine());
             }
         }
+
         catch (IOException | NoSuchElementException | IllegalStateException e)
         {
             e.printStackTrace();
@@ -56,21 +59,5 @@ public class WordBank {
 
         randomWord = words.get(number);
         return randomWord;
-    }
-
-    /**
-     * Receives a random word, and it replaces each letter with an underscore
-     * @param randomWord - takes a string value of a word.
-     * @return - returns a string of underscores which is used to replace letters of
-     *          the string
-     */
-    public static String hideAndReturnWord(String randomWord)
-    {
-        StringBuilder hiddenWord = new StringBuilder();
-        String[] word = randomWord.split("");
-        for (String character : word){
-            hiddenWord.append(character.replaceAll("\\w+", "_"));
-        }
-        return hiddenWord.toString();
     }
 }

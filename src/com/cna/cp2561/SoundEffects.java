@@ -6,11 +6,9 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class SoundEffects {
-
     void playMusic(String musicLocation) {
         try {
             File musicPath = new File(musicLocation);
-
             if (musicPath.exists()) {
 
                 // grabs wav file from the filepath and plays it
@@ -18,13 +16,12 @@ public class SoundEffects {
                 Clip clip = AudioSystem.getClip();
                 clip.open(audioInput);
                 clip.start();
-
             }
+
             else
             {
                 System.out.println("Cannot find file.");
             }
-
         }
         catch (Exception ex) {
             ex.printStackTrace();

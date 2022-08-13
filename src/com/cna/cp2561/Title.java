@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Title {
     public static void displayTitle() {
+
         // reads title txt file and displays it
         try(Scanner title = new Scanner(Paths.get("hangmanTitle.txt"))) {
 
