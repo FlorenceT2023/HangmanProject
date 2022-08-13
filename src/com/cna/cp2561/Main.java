@@ -17,6 +17,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean continueLoop = true;
         int menuChoice;
+
+        // do while loop encloses try catch block and exits when user inputs 4
         do {
             try{
                 System.out.println("\n******* Hangman Main Menu *******\n");
@@ -35,7 +37,7 @@ public class Main {
 
                 switch (menuChoice) {
                     case 1:
-                        // easy mode
+                        // Easy mode
                         while (play) {
                             WordBank.loadWords(1);
                             play = isPlay(true, scanner);
@@ -62,6 +64,7 @@ public class Main {
                         System.out.println("Game Over!");
                         break;
                     case 4:
+                        // Exits game
                         System.out.println("Exiting game...thanks for playing!");
                         System.exit(0);
                         break;
@@ -83,8 +86,8 @@ public class Main {
     // isPlay contains the gameplay mechanics of Hangman
     private static boolean isPlay(boolean play, Scanner scanner) {
         String randomWord = WordBank.getRandomWord();
-        String[] randomWordArray = randomWord.split("");
-        ArrayList<String> mainRandomWordArray = new ArrayList<>(Arrays.asList(randomWordArray));
+        String[] randomWordArray = randomWord.split(""); // splits random word and places it in array
+        ArrayList<String> mainRandomWordArray = new ArrayList<>(Arrays.asList(randomWordArray)); // converts randomWordArray to ArrayList object
         int amountOfGuesses = Display.arrDisplay.length;
 
         ArrayList<String> hashedArray = generateHashedArray(mainRandomWordArray);
@@ -93,6 +96,7 @@ public class Main {
         boolean wordIsGuessed = false;
         int tries = 0;
 
+        // game runs while wordIsGuessed is false and user tries does not equal available of guesses
         while (!wordIsGuessed & tries != amountOfGuesses)
         {
             System.out.println("Current Guesses: ");
@@ -101,6 +105,7 @@ public class Main {
             System.out.println("Enter a single letter: ");
             String input = scanner.next();
 
+            // user can input - to quit mid-game
             if (input.equals("-"))
             {
                 play = false;
@@ -108,11 +113,14 @@ public class Main {
                 System.out.println("Game Over!");
             }
 
+            // tries increment by 1 when user guesses wrong letter
             else if (!mainRandomWordArray.contains(input)){
 
                 tries++;
 
             }
+
+            // checks if letter user entered is in mainRandomWordArray and then searches for the position in hashedArray to reveal letter
             else {
                 for(int i = 0; i < mainRandomWordArray.size(); i++)
                 {
@@ -122,6 +130,8 @@ public class Main {
                     }
 
                 }
+
+                // if all letters are revealed then user wins the game
                 if(mainRandomWordArray.equals(hashedArray))
                 {
                     // plays sound when user wins the game
@@ -142,8 +152,9 @@ public class Main {
             else {
                 System.out.println(Display.arrDisplay[tries]);
             }
-
         }// END of inner while loop
+
+        // if user runs out of guesses and doesn't reveal word
         if(amountOfGuesses == tries)
         {
             // plays sound when user runs out of guesses
@@ -152,9 +163,9 @@ public class Main {
             loseMusic.playMusic(filepath);
 
             System.out.printf("\nYou ran out of guesses. The mystery word is \"%s\"\n", randomWord);
-
-
         }
+
+        // Asks user to either continue or quit game
         System.out.println("Would like to play again? (yes/no)");
         scanner.nextLine();
         String choice = scanner.nextLine();

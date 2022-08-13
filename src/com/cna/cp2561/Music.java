@@ -3,11 +3,9 @@ package com.cna.cp2561;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.io.File;
 
 public class Music {
-
     void playMusic(String musicLocation) {
         try {
             File musicPath = new File(musicLocation);
@@ -25,7 +23,6 @@ public class Music {
             {
                 System.out.println("Cannot find file.");
             }
-
         }
         catch (Exception ex) {
             ex.printStackTrace();
